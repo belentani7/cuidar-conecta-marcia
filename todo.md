@@ -19,3 +19,4 @@
 - [x] Mejorar el formulario con selección de modalidad, horizonte temporal y confirmación de expectativas de respuesta.
 - [x] Añadir medición de intención de contacto respetuosa con la privacidad para orientar las conversaciones institucionales.
 - [x] Actualizar y ejecutar las pruebas técnicas y la validación responsive tras las mejoras.
+- [x] Sincronizar la última versión validada de Cuidar Conecta con el repositorio de GitHub asociado.
