@@ -1,7 +1,8 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { contactRequests, InsertUser, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
+import type { ContactRequestInput } from "../shared/contact";
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
@@ -89,4 +90,19 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+export async function createContactRequest(input: ContactRequestInput): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("El servicio de solicitudes no está disponible en este momento.");
+  }
+
+  await db.insert(contactRequests).values({
+    organization: input.organization,
+    contactName: input.contactName,
+    email: input.email,
+    phone: input.phone || null,
+    service: input.service,
+    context: input.context,
+    replyPreference: input.replyPreference,
+  });
+}
