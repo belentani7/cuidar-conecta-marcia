@@ -1,0 +1,3 @@
+ALTER TABLE `contact_requests` ADD `format` enum('presencial','virtual','hibrido','por_definir') DEFAULT 'por_definir' NOT NULL;--> statement-breakpoint
+ALTER TABLE `contact_requests` ADD `timeframe` enum('proximo_mes','proximos_3_meses','en_exploracion') DEFAULT 'en_exploracion' NOT NULL;--> statement-breakpoint
+ALTER TABLE `contact_requests` ADD `teamSize` enum('1_10','11_30','31_60','mas_de_60') DEFAULT '1_10' NOT NULL;

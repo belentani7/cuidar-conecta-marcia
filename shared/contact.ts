@@ -2,6 +2,9 @@ import { z } from "zod";
 
 export const contactServiceOptions = ["charla", "formacion", "colaboracion", "otro"] as const;
 export const replyPreferenceOptions = ["email", "telefono", "indiferente"] as const;
+export const contactFormatOptions = ["presencial", "virtual", "hibrido", "por_definir"] as const;
+export const contactTimeframeOptions = ["proximo_mes", "proximos_3_meses", "en_exploracion"] as const;
+export const contactTeamSizeOptions = ["1_10", "11_30", "31_60", "mas_de_60"] as const;
 
 export const contactRequestInput = z.object({
   organization: z.string().trim().min(2, "Indica el nombre de la organización.").max(180),
@@ -9,6 +12,9 @@ export const contactRequestInput = z.object({
   email: z.string().trim().email("Indica un correo electrónico válido.").max(320),
   phone: z.string().trim().max(40).optional(),
   service: z.enum(contactServiceOptions),
+  format: z.enum(contactFormatOptions),
+  timeframe: z.enum(contactTimeframeOptions),
+  teamSize: z.enum(contactTeamSizeOptions),
   context: z
     .string()
     .trim()

@@ -1,4 +1,5 @@
 import { eq } from "drizzle-orm";
+import { desc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { contactRequests, InsertUser, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -102,7 +103,19 @@ export async function createContactRequest(input: ContactRequestInput): Promise<
     email: input.email,
     phone: input.phone || null,
     service: input.service,
+    format: input.format,
+    timeframe: input.timeframe,
+    teamSize: input.teamSize,
     context: input.context,
     replyPreference: input.replyPreference,
   });
+}
+
+export async function listContactRequests() {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("El servicio de solicitudes no está disponible en este momento.");
+  }
+
+  return db.select().from(contactRequests).orderBy(desc(contactRequests.createdAt));
 }

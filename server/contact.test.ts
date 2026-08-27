@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 
 vi.mock("./db", () => ({
   createContactRequest: vi.fn().mockResolvedValue(undefined),
+  listContactRequests: vi.fn().mockResolvedValue([]),
 }));
 
 import { contactRequestInput } from "../shared/contact";
@@ -15,6 +16,9 @@ const validRequest = {
   email: "ana@centrohorizonte.org",
   phone: "+34 600 000 000",
   service: "formacion" as const,
+  format: "hibrido" as const,
+  timeframe: "proximos_3_meses" as const,
+  teamSize: "11_30" as const,
   context: "Queremos abrir una conversación con nuestro equipo sobre cuidado humanizado.",
   replyPreference: "email" as const,
   website: "",
@@ -38,8 +42,16 @@ describe("solicitudes de contacto", () => {
       email: "ana@centrohorizonte.org",
       phone: "+34 600 000 000",
       service: "formacion",
+      format: "hibrido",
+      timeframe: "proximos_3_meses",
+      teamSize: "11_30",
       context: "Queremos abrir una conversación con nuestro equipo sobre cuidado humanizado.",
       replyPreference: "email",
     });
+  });
+
+  it("restringe la consulta de solicitudes al rol administrador", async () => {
+    const caller = appRouter.createCaller({} as TrpcContext);
+    await expect(caller.contact.list()).rejects.toMatchObject({ code: "FORBIDDEN" });
   });
 });

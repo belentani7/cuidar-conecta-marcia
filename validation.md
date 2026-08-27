@@ -9,3 +9,9 @@
 | Validación visible | Se intentó enviar el formulario sin datos obligatorios. | La interfaz mantuvo el formulario y mostró el mensaje claro «Indica el nombre de tu organización para continuar». |
 
 La solicitud usada en la verificación contiene datos explícitamente ficticios y se registró con el único propósito de validar el flujo público de la aplicación.
+
+## Ampliación guiada por el prompt maestro
+
+La segunda versión añadió el recorrido de colaboración, cuatro formatos institucionales y tres campos de contexto —modalidad, horizonte temporal y tamaño aproximado del equipo— en el formulario. La migración correspondiente fue generada, revisada y aplicada sin operaciones destructivas. La revisión visual confirma que los nuevos bloques se mantienen legibles en escritorio y móvil. Las pruebas unitarias y la comprobación de tipos finalizaron correctamente: cinco pruebas superadas y cero errores de TypeScript.
+
+En la interfaz activa se comprobó que la navegación incorpora el acceso «Recorrido», que la nueva sección explica etapas y formatos de colaboración, y que el selector de modalidad permite elegir una preferencia —incluida la opción «Híbrida»— antes de enviar la solicitud.

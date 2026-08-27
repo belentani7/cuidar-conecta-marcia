@@ -13,3 +13,9 @@
 - [x] Validar la apariencia en escritorio y móvil, la navegación y el flujo de solicitud.
 - [x] Mejorar la retroalimentación visible del formulario cuando la solicitud no cumple los requisitos de validación.
 - [x] Mejorar la retroalimentación visible del formulario cuando la solicitud no cumple los requisitos de validación.
+- [x] Redactar y documentar un prompt maestro integral para producto, marca, tecnología, contenido e impacto de Cuidar Conecta.
+- [x] Reforzar la diferenciación de marca mediante un sistema visual consistente de conversación y conexión.
+- [x] Ampliar la propuesta institucional con una sección clara de formatos, entregables y recorrido de colaboración.
+- [x] Mejorar el formulario con selección de modalidad, horizonte temporal y confirmación de expectativas de respuesta.
+- [x] Añadir medición de intención de contacto respetuosa con la privacidad para orientar las conversaciones institucionales.
+- [x] Actualizar y ejecutar las pruebas técnicas y la validación responsive tras las mejoras.

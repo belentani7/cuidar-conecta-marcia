@@ -15,6 +15,13 @@
       "when": 1787815061471,
       "tag": "0001_powerful_quicksilver",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1787827302931,
+      "tag": "0002_dear_vulcan",
+      "breakpoints": true
     }
   ]
 }

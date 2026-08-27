@@ -1,8 +1,8 @@
 import { COOKIE_NAME } from "@shared/const";
-import { createContactRequest } from "./db";
+import { createContactRequest, listContactRequests } from "./db";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { adminProcedure, publicProcedure, router } from "./_core/trpc";
 import { contactRequestInput } from "../shared/contact";
 
 export const appRouter = router({
@@ -29,6 +29,7 @@ export const appRouter = router({
       await createContactRequest(request);
       return { success: true } as const;
     }),
+    list: adminProcedure.query(() => listContactRequests()),
   }),
 });
 
