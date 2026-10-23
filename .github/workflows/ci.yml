@@ -25,6 +25,8 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Verify public page privacy and keyboard contracts
+        run: node --test tests/public-page-contract.test.mjs
       - run: pnpm check
       - run: pnpm test
       - run: pnpm build
