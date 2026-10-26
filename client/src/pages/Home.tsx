@@ -132,7 +132,12 @@ export default function Home() {
       return;
     }
 
-    submitRequest.mutate({ ...form, phone: form.phone.trim() || undefined, website: "" });
+    const honeypot = new FormData(event.currentTarget).get("website");
+    submitRequest.mutate({
+      ...form,
+      phone: form.phone.trim() || undefined,
+      website: typeof honeypot === "string" ? honeypot : "",
+    });
   };
 
   return (

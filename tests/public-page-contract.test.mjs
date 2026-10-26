@@ -37,3 +37,14 @@ test("reduced-motion preference applies to CSS and scripted contact scrolling", 
   assert.match(home, /prefers-reduced-motion: reduce/);
   assert.match(home, /reducedMotion \? "auto" : "smooth"/);
 });
+
+test("honeypot is read from the submitted form and accepted by the server for silent discard", () => {
+  const home = read("client/src/pages/Home.tsx");
+  const schema = read("shared/contact.ts");
+  const router = read("server/routers.ts");
+  assert.match(home, /new FormData\(event\.currentTarget\)\.get\("website"\)/);
+  assert.match(home, /website: typeof honeypot === "string" \? honeypot : ""/);
+  assert.doesNotMatch(home, /website: "" \}\)/);
+  assert.match(schema, /website: z\.string\(\)\.max\(256\)\.optional\(\)/);
+  assert.match(router, /if \(website\) \{[\s\S]*?return \{ success: true \}/);
+});

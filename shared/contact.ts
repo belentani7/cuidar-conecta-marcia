@@ -21,7 +21,7 @@ export const contactRequestInput = z.object({
     .min(20, "Cuéntanos brevemente la necesidad o el contexto de la solicitud.")
     .max(1600),
   replyPreference: z.enum(replyPreferenceOptions),
-  website: z.string().max(0).optional(),
+  website: z.string().max(256).optional(),
 });
 
 export type ContactRequestInput = Omit<z.infer<typeof contactRequestInput>, "website">;
