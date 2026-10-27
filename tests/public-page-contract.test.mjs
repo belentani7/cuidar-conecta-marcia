@@ -48,3 +48,11 @@ test("honeypot is read from the submitted form and accepted by the server for si
   assert.match(schema, /website: z\.string\(\)\.max\(256\)\.optional\(\)/);
   assert.match(router, /if \(website\) \{[\s\S]*?return \{ success: true \}/);
 });
+
+test("Vite middleware retains the configured host allowlist", () => {
+  const middleware = read("server/_core/vite.ts");
+  const config = read("vite.config.ts");
+  assert.match(config, /allowedHosts:\s*\[/);
+  assert.match(middleware, /serverOptions\s*=\s*\{\s*\.\.\.viteConfig\.server\s*,/);
+  assert.doesNotMatch(middleware, /allowedHosts\s*:\s*true/);
+});
