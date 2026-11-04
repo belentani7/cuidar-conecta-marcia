@@ -50,6 +50,20 @@ describe("solicitudes de contacto", () => {
     });
   });
 
+
+  it("descarta silenciosamente el campo trampa sin guardar datos", async () => {
+    vi.mocked(createContactRequest).mockClear();
+    const trapped = { ...validRequest, website: "bot.example" };
+    expect(contactRequestInput.safeParse(trapped).success).toBe(true);
+    const caller = appRouter.createCaller({} as TrpcContext);
+    await expect(caller.contact.submit(trapped)).resolves.toEqual({ success: true });
+    expect(createContactRequest).not.toHaveBeenCalled();
+  });
+
+  it("rechaza un campo trampa excesivamente grande", () => {
+    expect(contactRequestInput.safeParse({ ...validRequest, website: "x".repeat(257) }).success).toBe(false);
+  });
+
   it("restringe la consulta de solicitudes al rol administrador", async () => {
     const caller = appRouter.createCaller({} as TrpcContext);
     await expect(caller.contact.list()).rejects.toMatchObject({ code: "FORBIDDEN" });
