@@ -21,3 +21,7 @@ npm run dev
 ---
 
 License: not specified
+
+
+## Producto
+Véase `plataforma/OFERTA.md`, `plataforma/precios.json`, `plataforma/ONEPAGER.md`.
